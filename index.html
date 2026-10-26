@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TerritoryPulse — Practice Outreach Planner</title>
+<style>
+:root{--navy:#163247;--teal:#168577;--ink:#1f2937;--muted:#64748b;--line:#e2e8f0;--bg:#f5f8fa}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}header{background:var(--navy);color:white;padding:18px max(16px,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{display:flex;gap:10px;align-items:center}.logo{background:#6ed5be;color:var(--navy);font-weight:900;font-size:20px;width:38px;height:38px;border-radius:10px;display:grid;place-items:center}.brand h1{font-size:20px;margin:0}.brand p{font-size:12px;color:#c9d8e2;margin:3px 0}.tag{border:1px solid #547082;border-radius:30px;padding:7px 10px;font-size:11px}main{max-width:1180px;margin:auto;padding:22px 16px 45px;scroll-behavior:smooth}
+.navbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 3px 12px #0f172a0a}
+.navinner{max-width:1180px;margin:auto;padding:8px 16px;display:flex;align-items:center;gap:7px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#a8b8c8 #eef3f7;scroll-snap-type:x proximity}
+.navlink{flex:0 0 auto;background:#f1f5f9;color:#334155;border:1px solid transparent;padding:9px 12px;border-radius:9px;font-size:12px;text-decoration:none;font-weight:750;cursor:pointer;white-space:nowrap;scroll-snap-align:start}
+.navlink.active{background:#dff4ee;color:#11665c;border-color:#b9e7db}.navlink:focus-visible{outline:3px solid #0f9f91;outline-offset:2px}.navhint{display:none}.view-heading{display:flex;align-items:center;gap:12px;margin:0 0 16px}.view-heading h2{font-size:24px;color:var(--navy);margin:0}.view-help{font-size:12px;color:var(--muted);margin-top:4px}.back-button{background:#fff;color:var(--navy);border:1px solid var(--line)}.section-anchor{scroll-margin-top:8px}
+.section-anchor{scroll-margin-top:68px}
+@media(max-width:560px){.navinner{padding:7px 10px}.navlink{padding:8px 10px}.intro .actions button{font-size:12px}}.intro{display:flex;justify-content:space-between;align-items:end;gap:15px;flex-wrap:wrap;margin-bottom:18px}.intro h2{color:var(--navy);font-size:clamp(24px,3vw,32px);margin:0}.intro p{max-width:700px;line-height:1.5;color:var(--muted);margin:7px 0 0}.actions{display:flex;gap:8px;flex-wrap:wrap}button{border:0;border-radius:9px;padding:10px 13px;background:var(--teal);color:white;font-weight:700;cursor:pointer}button.secondary{background:white;color:var(--navy);border:1px solid var(--line)}button.small{padding:6px 9px;font-size:11px;background:#eff6ff;color:#1d4ed8;border:1px solid #dbeafe}.notice{background:#fff8e7;border:1px solid #f3d99b;border-radius:10px;padding:11px 13px;color:#805b11;font-size:12px;line-height:1.5;margin-bottom:17px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.card{background:white;border:1px solid var(--line);border-radius:14px;padding:15px;box-shadow:0 2px 7px #0f172a05}.label{font-size:12px;color:var(--muted);font-weight:650}.num{font-size:28px;font-weight:800;color:var(--navy);margin:6px 0 2px}.muted{color:var(--muted);font-size:12px}.dashboard{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:16px}.chartrow{display:grid;grid-template-columns:105px 1fr 35px;gap:8px;align-items:center;margin:10px 0;font-size:12px}.barbg{height:10px;background:#edf2f7;border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--teal);border-radius:99px}.bar.alt{background:#6b8bb5}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.dashboard .muted{line-height:1.5}.layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr);gap:15px}.head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}.head h3{margin:0;color:var(--navy);font-size:16px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.filters input{flex:1;min-width:150px}.filters input,.filters select,input,select,textarea{border:1px solid #cbd5e1;border-radius:8px;padding:9px;background:white;font:inherit;font-size:13px;min-width:0}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px;min-width:620px}th{text-align:left;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.04em;padding:10px 7px;border-bottom:1px solid var(--line)}td{padding:11px 7px;border-bottom:1px solid #edf1f5;vertical-align:top}tr:last-child td{border-bottom:0}.name{font-weight:750;color:var(--navy)}.sub{display:block;font-size:10px;color:var(--muted);margin-top:3px}.pill{display:inline-block;border-radius:30px;padding:4px 7px;font-size:10px;font-weight:800;white-space:nowrap}.high{background:#fee2e2;color:#991b1b}.medium{background:#fef3c7;color:#92400e}.routine{background:#dff4ee;color:#11665c}.reason{font-size:11px;line-height:1.45;color:#475569;margin-top:5px;max-width:245px}.side{display:grid;gap:15px;align-content:start}.item{border:1px solid var(--line);border-radius:10px;padding:11px;margin-top:8px}.itemtop{display:flex;justify-content:space-between;gap:8px;align-items:center}.item strong{font-size:12px}.item p{font-size:11px;color:var(--muted);line-height:1.45;margin:7px 0}.mini{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #edf1f5;padding:8px 0;font-size:11px}.mini:last-child{border:0}.empty{padding:14px 0;color:var(--muted);font-size:12px}.footer{text-align:center;color:var(--muted);font-size:11px;line-height:1.5;margin-top:22px}dialog{border:0;border-radius:14px;padding:0;width:calc(100% - 24px);max-width:620px;box-shadow:0 24px 70px #0004}dialog::backdrop{background:#0f172a88}.modalhead{background:var(--navy);color:white;padding:15px 18px;display:flex;justify-content:space-between;align-items:center}.modalhead h3{margin:0;font-size:16px}.modalhead button{background:#315064;padding:6px 9px}.modalbody{padding:18px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formgrid label{display:grid;gap:5px;font-size:12px;color:#475569;font-weight:650}.wide{grid-column:1/-1}.formgrid textarea{min-height:65px}.formactions{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#102d40;color:white;padding:10px 15px;border-radius:9px;display:none;font-size:12px}
+@media(max-width:850px){.kpis{grid-template-columns:repeat(2,1fr)}.dashboard{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr}}@media(max-width:560px){header{padding:14px}.kpis{gap:8px}.card{padding:12px}.num{font-size:24px}.side{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}main{padding:16px 11px 35px}.actions{width:100%}.actions button{flex:1}}
+
+/* TerritoryPulse visual refresh: polished, calm healthcare SaaS */
+:root{
+ --navy:#172554;--teal:#0f9f91;--ink:#172033;--muted:#66758b;
+ --line:#e0e7f1;--bg:#f3f6fb;
+}
+body{
+ background:
+  radial-gradient(ellipse at 12% 0%,rgba(14,165,164,.10),transparent 34rem),
+  radial-gradient(ellipse at 95% 8%,rgba(99,102,241,.09),transparent 32rem),
+  var(--bg);
+ color:var(--ink);
+ font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+ letter-spacing:-.01em;
+}
+header{
+ background:linear-gradient(112deg,#111c43 0%,#173b58 58%,#0e6b70 100%);
+ min-height:92px;position:relative;overflow:hidden;
+ box-shadow:0 8px 28px rgba(19,37,77,.16);
+}
+header:after{
+ content:"";position:absolute;width:340px;height:340px;border:1px solid rgba(255,255,255,.09);
+ border-radius:50%;right:7%;top:-220px;box-shadow:0 0 0 34px rgba(255,255,255,.025),0 0 0 70px rgba(255,255,255,.02);
+ pointer-events:none;
+}
+.brand{position:relative;z-index:1;gap:12px}
+.logo{
+ background:linear-gradient(145deg,#a5f3e4,#43c9b4);color:#102d47;
+ width:42px;height:42px;border-radius:13px;
+ box-shadow:0 5px 15px rgba(0,0,0,.15);font-size:21px;
+}
+.brand h1{font-size:21px;letter-spacing:-.035em}
+.brand p{font-size:12px;color:#d1e5ee}
+.tag{position:relative;z-index:1;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.23);color:#e7f5f7;padding:8px 12px}
+main{padding-top:26px}
+.navbar{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid #dbe5f0;box-shadow:0 5px 20px rgba(23,37,84,.06)}
+.navinner{gap:8px;padding-top:10px;padding-bottom:10px;scrollbar-color:#9fb3c7 #edf2f7}
+.navlink{background:transparent;color:#53627a;border-radius:10px;padding:10px 14px;font-size:12px;transition:background .18s ease,color .18s ease,transform .18s ease}
+.navlink:hover{background:#edf4f8;color:#173b58}
+.navlink.active{background:#d3f5ee;color:#06685f;border-color:#7ddacb;box-shadow:inset 0 0 0 1px rgba(15,159,145,.12);font-weight:850}.navlink.active:before{content:"●";font-size:8px;margin-right:6px;vertical-align:2px}
+.intro{margin-bottom:22px}
+.intro h2{font-size:clamp(27px,3.2vw,36px);letter-spacing:-.045em;line-height:1.08}
+.intro p{font-size:14px;line-height:1.65;max-width:660px}
+button{background:linear-gradient(135deg,#0e9f91,#087e82);box-shadow:0 4px 10px rgba(8,126,130,.16);transition:transform .16s ease,box-shadow .16s ease,filter .16s ease}
+button:hover{filter:brightness(1.03);transform:translateY(-1px);box-shadow:0 7px 15px rgba(8,126,130,.2)}
+button.secondary,.back-button{background:#fff;color:#23385c;border:1px solid #d9e3ef;box-shadow:none}
+button.secondary:hover,.back-button:hover{background:#f6f9fc;box-shadow:0 4px 12px rgba(23,37,84,.07)}
+.notice{border-radius:12px;background:#fff9e9;border-color:#f2d99b;box-shadow:0 4px 14px rgba(146,101,18,.04)}
+.kpis{gap:14px}
+.kpis>.card{position:relative;overflow:hidden;padding:18px 17px 16px;border-radius:16px;box-shadow:0 5px 18px rgba(25,47,84,.045);transition:transform .18s ease,box-shadow .18s ease}
+.kpis>.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(#19b7a2,#6b7ff1)}
+.kpis>.card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(25,47,84,.08)}
+.label{text-transform:uppercase;letter-spacing:.065em;font-size:10px;color:#6b7890}
+.num{font-size:31px;letter-spacing:-.045em;color:#172554}
+.card{border-color:#e1e8f2;border-radius:16px;box-shadow:0 5px 18px rgba(25,47,84,.045);padding:18px}
+.card h3{letter-spacing:-.02em}
+.dashboard>.card,.layout .card{box-shadow:0 5px 18px rgba(25,47,84,.045)}
+.dashboard>.card h3,.head h3{font-size:15px;letter-spacing:-.025em}
+.chartrow{margin:13px 0;grid-template-columns:115px 1fr 32px}
+.barbg{height:9px;background:#edf2f8}
+.bar{background:linear-gradient(90deg,#0e9f91,#4bc8b5)}
+.bar.alt{background:linear-gradient(90deg,#536de7,#91a1fb)}
+.layout{gap:16px}
+.filters input,.filters select,input,select,textarea{border-color:#d6e0ed;border-radius:10px;transition:border-color .15s ease,box-shadow .15s ease}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#48bcb0;box-shadow:0 0 0 3px rgba(15,159,145,.12)}
+table{font-size:12px}
+th{color:#7a879c;letter-spacing:.09em;padding-top:12px;padding-bottom:12px}
+td{padding-top:13px;padding-bottom:13px}
+tbody tr:hover, tr:hover td{background:#f8fbfd}
+.name{color:#1c3760}
+.pill{letter-spacing:.01em;padding:5px 8px}
+.high{background:#ffe7e7;color:#a32736}
+.medium{background:#fff2cc;color:#91600c}
+.routine{background:#dcf7ef;color:#087d72}
+.item{border-color:#e2eaf3;border-radius:12px;background:linear-gradient(140deg,#fff,#fbfdff)}
+.mini{padding:10px 0;line-height:1.45}
+.view-heading h2{letter-spacing:-.04em}
+.view-help{line-height:1.5}
+dialog{border-radius:18px}
+.modalhead{background:linear-gradient(112deg,#111c43,#176a70)}
+.toast{box-shadow:0 10px 35px rgba(15,23,42,.25)}
+.footer{padding:12px 0 0}
+@media(max-width:560px){
+ header{min-height:82px}
+ .tag{font-size:10px}
+ .intro h2{font-size:28px}
+ .kpis>.card{padding:14px 12px}
+ .num{font-size:26px}
+ .card{border-radius:14px}
+}
+
+
+/* Additional workflow views: planner, analytics and weekly report */
+.feature-view{scroll-margin-top:72px}
+.trend-source{padding:13px 0;border-bottom:1px solid var(--line)}
+.trend-source:last-child{border-bottom:0}
+.trend-title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;margin-bottom:8px}
+.trend-bars{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:end;margin:10px 0 4px}
+.trend-month{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;color:var(--muted);min-width:0}
+.trend-month b{color:var(--ink);font-size:11px}
+.trend-bar-wrap{height:90px;width:100%;max-width:48px;background:#edf2f8;border-radius:8px 8px 3px 3px;display:flex;align-items:end;overflow:hidden}
+.trend-bar{width:100%;min-height:2px;background:linear-gradient(180deg,#36c7b1,#0f8f91);border-radius:7px 7px 2px 2px}
+.timeline-entry{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.timeline-entry:last-child{border-bottom:0}
+.timeline-dot{flex:0 0 10px;height:10px;border-radius:50%;background:#12a594;margin-top:5px;box-shadow:0 0 0 4px #d9f7f0}
+.timeline-entry p{font-size:12px;line-height:1.5;margin:6px 0 0;color:#526078;white-space:pre-wrap}
+#plannerList .item{margin-top:10px}
+.feature-view .dashboard{margin:0}
+@media(max-width:650px){.navinner{padding:9px 12px 11px;gap:7px}.navlink{padding:10px 12px}.navhint{display:block;margin:0;padding:0 14px 7px;text-align:right;font-size:10px;font-weight:700;letter-spacing:.02em;color:#52647a;background:#fff}.navhint span{display:inline-block;background:#eef5f8;border:1px solid #dbe5ed;border-radius:20px;padding:4px 8px}.trend-bars{gap:4px}.trend-month{font-size:9px}.trend-bar-wrap{height:68px}.feature-view .kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+</style></head><body>
+<header><div class="brand"><div class="logo">T</div><div><h1>TerritoryPulse</h1><p>Referral activity & outreach planner</p></div></div><div class="tag">INTERACTIVE PROTOTYPE · FICTIONAL DATA</div></header>
+<nav class="navbar" aria-label="Main navigation"><div class="navinner">
+<button class="navlink active" type="button" data-view="overview" aria-current="page">Overview</button>
+<button class="navlink" type="button" data-view="sources">Referrals & sources</button>
+<button class="navlink" type="button" data-view="followups">Follow-ups</button>
+<button class="navlink" type="button" data-view="planner">Visit planner</button>
+<button class="navlink" type="button" data-view="insights">Trends & weekly summary</button>
+</div><div class="navhint"><span>Swipe to see all sections →</span></div></nav>
+<main>
+<div class="intro section-anchor" id="overview"><div><h2>Know which referral sources to focus on next.</h2><p>Turn individual GP and consultant referrals into source-level trends and an explainable follow-up list. Use these priorities to support your judgement—not replace it. GP referrals are tracked by practice; consultant referrals are tracked by the individual consultant, with a fictional hospital affiliation.</p></div><div class="actions"><button id="addRef">＋ Add referral</button><button class="secondary" id="addAct">＋ Plan contact</button><button class="secondary" id="export">Export CSV</button></div></div>
+<div class="notice" id="notice"><b>Demo safety note:</b> All names and activity are fictional. Do not enter patient information, identifiable real GP or consultant details, or confidential employer data. Changes are saved in this browser only; this is not a clinical system.</div>
+<div class="kpis"><div class="card"><div class="label">Referral sources</div><div class="num" id="kPractices">—</div><div class="muted">In this workspace</div></div><div class="card"><div class="label">Referrals · last 30 days</div><div class="num" id="kRecent">—</div><div class="muted">Calculated from dates</div></div><div class="card"><div class="label">High-priority reviews</div><div class="num" id="kHigh">—</div><div class="muted">Prototype rule score</div></div><div class="card"><div class="label">Overdue follow-ups</div><div class="num" id="kOverdue">—</div><div class="muted">Open actions past due</div></div></div>
+<div class="dashboard section-anchor" id="dashboard-charts">
+<section class="card"><div class="head"><div><h3>Referral activity by source type</h3><div class="muted">Latest 30 days compared with the previous 30 days</div></div></div><div id="typeChart"></div><div class="legend"><span><i class="dot" style="background:var(--teal)"></i>Latest 30 days</span><span><i class="dot" style="background:#6b8bb5"></i>Previous 30 days</span></div></section>
+<section class="card"><div class="head"><div><h3>Where to focus</h3><div class="muted">Automatically calculated from the current priority rules</div></div></div><div id="prioritySummary"></div></section>
+</div>
+<div class="layout"><section class="card section-anchor" id="source-list"><div class="head"><div><h3>Prioritised referral sources</h3><div class="muted">GP practices and named consultants, with hospital affiliation where relevant</div></div><span class="muted" id="count"></span></div><div class="filters"><input id="search" placeholder="Search practice or consultant…" aria-label="Search practice"><select id="priority"><option value="all">All priorities</option><option value="high">High priority</option><option value="medium">Review</option><option value="routine">Routine</option></select><select id="trend"><option value="all">All trends</option><option value="down">Falling</option><option value="up">Rising</option><option value="flat">Stable / no baseline</option></select></div><div class="tablewrap"><table><thead><tr><th>Referral source</th><th>Total referrals</th><th>30-day change</th><th>Last contact</th><th>Suggested next step</th><th></th></tr></thead><tbody id="rows"></tbody></table></div><div id="noresults" class="empty" hidden>No referral sources match those filters.</div></section>
+<div class="side"><section class="card section-anchor" id="follow-ups"><div class="head"><div><h3>Next actions</h3><div class="muted">Open follow-ups by due date</div></div></div><div id="queue"></div></section><section class="card section-anchor" id="recent-referrals"><div class="head"><div><h3>Recent referrals</h3><div class="muted">Latest fictional records</div></div></div><div id="recent"></div></section></div></div>
+<section id="planner-view" class="card feature-view" style="display:none;margin-bottom:16px">
+<div class="head"><div><h3>Weekly visit planner</h3><div class="muted">Plan visits and follow-ups for this week. Fictional demo data only.</div></div><button id="plannerAddVisit" type="button">＋ Plan a visit</button></div>
+<div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="card"><div class="label">Open actions this week</div><div class="num" id="planCount">—</div></div><div class="card"><div class="label">Visits this week</div><div class="num" id="planVisits">—</div></div><div class="card"><div class="label">Overdue actions</div><div class="num" id="planLate">—</div></div></div><div id="plannerList"></div></section>
+<section id="insights-view" class="feature-view" style="display:none;margin-bottom:16px"><div class="card" style="margin-bottom:16px"><div class="head"><div><h3>Top performers and biggest declines</h3><div class="muted">Latest 30 days compared with the previous 30 days.</div></div></div><div class="dashboard"><section><h3>Highest referral volume</h3><div id="topSources"></div></section><section><h3>Largest declines</h3><div id="decliningSources"></div></section></div></div><div class="card"><div class="head"><div><h3>Six-month referral trends</h3><div class="muted">Monthly source-level totals; no patient-level data.</div></div></div><div id="sixMonthTrends"></div></div></section>
+<section id="summary-view" class="card feature-view" style="display:none;margin-bottom:16px"><div class="head"><div><h3>Weekly territory summary</h3><div class="muted" id="summaryPeriod"></div></div><button id="exportSummary" type="button">Export summary CSV</button></div><div class="kpis" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div class="card"><div class="label">Referrals this week</div><div class="num" id="sumReferrals">—</div></div><div class="card"><div class="label">Sources declining</div><div class="num" id="sumDeclines">—</div></div><div class="card"><div class="label">Actions due this week</div><div class="num" id="sumDue">—</div></div><div class="card"><div class="label">Overdue actions</div><div class="num" id="sumLate">—</div></div></div><h3>Suggested focus for this week</h3><div id="summaryFocus"></div><p class="muted">Rule-based prompts for human review, not validated recommendations.</p></section><section id="source-detail-view" class="card" style="display:none;margin-bottom:16px"></section><div class="footer">TerritoryPulse is a student project prototype. Scores are illustrative rules, not validated business or clinical recommendations. Fictional data only.</div></main>
+<dialog id="refDialog"><div class="modalhead"><h3>Add fictional referral</h3><button type="button" data-close="refDialog">Close</button></div><div class="modalbody"><form id="refForm"><div class="formgrid"><label>Referring organisation<select id="refPractice" required></select></label><label>Referral date<input id="refDate" type="date" required></label><label>Referral source type<select id="refType"><option>GP</option><option>Consultant</option></select></label><label>Named referrer<input id="referrerName" type="text" required placeholder="e.g. Dr Morgan Reed"></label><label>Record status<select id="refStatus"><option>Recorded</option><option>Needs review</option></select></label></div><div class="formactions"><button>Save referral</button><button class="secondary" type="button" data-close="refDialog">Cancel</button></div></form></div></dialog>
+<dialog id="actDialog"><div class="modalhead"><h3>Plan a contact action</h3><button type="button" data-close="actDialog">Close</button></div><div class="modalbody"><form id="actForm"><div class="formgrid"><label>Referring organisation<select id="actPractice" required></select></label><label>Action type<select id="actType"><option>Call</option><option>Visit</option><option>Email</option><option>Other</option></select></label><label>Due date<input id="actDue" type="date" required></label><label>Status<select id="actStatus"><option>Planned</option><option>Completed</option><option>Cancelled</option></select></label><label class="wide">Notes<textarea id="actNotes" placeholder="e.g. Follow up on previous discussion"></textarea></label></div><div class="formactions"><button>Save action</button><button class="secondary" type="button" data-close="actDialog">Cancel</button></div></form></div></dialog>
+<dialog id="detailDialog"><div class="modalhead"><h3 id="detailTitle">Referral source details</h3><button type="button" data-close="detailDialog">Close</button></div><div class="modalbody" id="detailBody"></div></dialog><div class="toast" id="toast" role="status"></div>
+<script>
+const KEY='territorypulse-demo-v2';const TODAY=new Date();TODAY.setHours(0,0,0,0);const iso=d=>{let x=new Date(d);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`};const ago=n=>{let d=new Date(TODAY);d.setDate(d.getDate()-n);return iso(d)};const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function seed(){let names=['Oakfield Medical','Riverside Practice','Hillview Clinic','Maple Grove Surgery','Seaview Family Practice','Brookside Medical','Meadow Park Practice','Cedar Lane Clinic','Westgate Health Centre','Lakeside Surgery','Parkview Medical','Ashdown Practice','Dr Morgan Reed','Dr Aisha Kelly','Dr Niamh Shah','Dr Patrick Murphy','Dr Emma Byrne','Dr Daniel Walsh','Dr Sara Khan','Dr James O’Connor'];let gaps=[48,9,65,17,42,5,76,23,12,55,3,34,21,44,12,37,18,52,7,31];let hospitals=['','','','','','','','','','','','','Northbridge Private Hospital','Riverside Specialist Hospital','Westhaven Private Hospital','St Brigid’s Independent Hospital','Northbridge Private Hospital','Riverside Specialist Hospital','Westhaven Private Hospital','St Brigid’s Independent Hospital'];let practices=names.map((name,i)=>({id:'P'+String(i+1).padStart(3,'0'),name,area:['North','Central','South'][i%3],sourceType:i<12?'GP practice':'Consultant',hospital:hospitals[i],lastContact:ago(gaps[i])}));let refs=[],id=1;let prev=[8,4,3,6,2,5,1,7,4,3,6,2,5,3,6,2,4,5,3,6],curr=[5,5,1,7,2,3,4,7,6,1,6,4,3,5,2,4,6,2,5,3];practices.forEach((p,i)=>{for(let n=0;n<prev[i];n++)refs.push({id:'R'+String(id++).padStart(4,'0'),practiceId:p.id,date:ago(35+((n*5+i*3)%25)),type:i<12?'GP':'Consultant',referrerName:p.name,status:'Recorded'});for(let n=0;n<curr[i];n++)refs.push({id:'R'+String(id++).padStart(4,'0'),practiceId:p.id,date:ago((n*4+i*2)%28),type:i<12?'GP':'Consultant',referrerName:p.name,status:n%11===0?'Needs review':'Recorded'})});let actions=[{id:'A001',practiceId:'P001',type:'Visit',due:ago(3),status:'Planned',notes:'Review recent activity and previous discussion'},{id:'A002',practiceId:'P013',type:'Call',due:ago(1),status:'Planned',notes:'Follow up on consultant referral activity'},{id:'A003',practiceId:'P005',type:'Email',due:ago(-3),status:'Planned',notes:'Send agreed information'},{id:'A004',practiceId:'P017',type:'Call',due:ago(2),status:'Planned',notes:'Routine consultant relationship check-in'},{id:'A005',practiceId:'P009',type:'Visit',due:ago(-2),status:'Completed',notes:'Completed introductory visit'}];return {practices,refs,actions,nextRef:id,nextAction:6}}
+let storageAvailable=true;
+function load(){
+  try {
+    const raw=localStorage.getItem(KEY);
+    if(raw){const x=JSON.parse(raw);if(x?.practices&&x?.refs&&x?.actions)return x;}
+  } catch(e) { storageAvailable=false; }
+  const x=seed();
+  try { localStorage.setItem(KEY,JSON.stringify(x)); storageAvailable=true; }
+  catch(e) { storageAvailable=false; }
+  return x;
+}
+let db=load();
+function save(){
+  try { localStorage.setItem(KEY,JSON.stringify(db)); storageAvailable=true; return true; }
+  catch(e) { storageAvailable=false; return false; }
+}
+function counts(pid){let curStart=ago(29),prevStart=ago(59);let r=db.refs.filter(x=>x.practiceId===pid);let current=r.filter(x=>x.date>=curStart&&x.date<=iso(TODAY)).length,previous=r.filter(x=>x.date>=prevStart&&x.date<curStart).length;return {current,previous,delta:current-previous}}
+function openActions(pid){return db.actions.filter(a=>a.practiceId===pid&&!['Completed','Cancelled'].includes(a.status))}function overdue(pid){return openActions(pid).filter(a=>a.due<iso(TODAY))}
+function evaluate(p){let c=counts(p.id),total=db.refs.filter(r=>r.practiceId===p.id).length,gap=Math.floor((TODAY-new Date(p.lastContact+'T00:00:00'))/86400000),late=overdue(p.id).length,score=0,reasons=[];if(c.previous>=3&&c.delta<=-3){score+=2;reasons.push(`Referral activity fell by ${Math.abs(c.delta)} vs previous 30 days`)}if(gap>=30){score+=2;reasons.push(`No recorded contact for ${gap} days`)}if(late){score+=3;reasons.push(`${late} follow-up action${late===1?' is':'s are'} overdue`)}let priority=score>=5?'high':score>=2?'medium':'routine';let trend='flat',label='Stable';if(c.previous<1)label='Insufficient baseline';else if(c.delta<=-2){trend='down';label=`Falling (${c.delta})`}else if(c.delta>=2){trend='up';label=`Rising (+${c.delta})`}if(!reasons.length)reasons.push(c.previous<1?'Not enough previous-period activity to compare':'No priority rules triggered');let changePct=c.previous>0?Math.round((c.delta/c.previous)*100):null;let nextAction=late?'Follow up on overdue commitment':(c.previous>=3&&c.delta<=-3&&gap>=30)?'Consider a visit: referrals down and contact overdue':(c.previous>=3&&c.delta<=-3)?'Review referral drop; consider a call':gap>=30?'Consider a check-in: no recent contact':c.delta>=2?'Maintain relationship; referrals rising':'Routine monitoring';return {...p,c,total,changePct,gap,late,score,reasons,priority,trend,label,nextAction}}
+function all(){return db.practices.map(evaluate).sort((a,b)=>b.score-a.score||a.name.localeCompare(b.name))}
+function render(){let ev=all();document.getElementById('kPractices').textContent=db.practices.length;document.getElementById('kRecent').textContent=db.refs.filter(r=>r.date>=ago(29)&&r.date<=iso(TODAY)).length;document.getElementById('kHigh').textContent=ev.filter(p=>p.priority==='high').length;document.getElementById('kOverdue').textContent=db.actions.filter(a=>!['Completed','Cancelled'].includes(a.status)&&a.due<iso(TODAY)).length;let chartTypes=[{label:'GP practices',match:p=>p.sourceType==='GP practice'||p.sourceType==='GP'},{label:'Consultants',match:p=>p.sourceType==='Consultant'||p.sourceType==='Hospital'}];document.getElementById('typeChart').innerHTML=chartTypes.map(item=>{let ids=db.practices.filter(item.match).map(p=>p.id),cur=db.refs.filter(r=>ids.includes(r.practiceId)&&r.date>=ago(29)&&r.date<=iso(TODAY)).length,prevCount=db.refs.filter(r=>ids.includes(r.practiceId)&&r.date>=ago(59)&&r.date<ago(29)).length,max=Math.max(cur,prevCount,1);return `<div class="chartrow"><span>${item.label}</span><div><div class="barbg" aria-label="Latest 30 days"><div class="bar" style="width:${cur/max*100}%"></div></div><div class="barbg" style="margin-top:4px" aria-label="Previous 30 days"><div class="bar alt" style="width:${prevCount/max*100}%"></div></div></div><strong>${cur}</strong></div><div class="muted">${cur-prevCount>=0?'+':''}${cur-prevCount} referrals vs previous 30 days</div>`}).join('');document.getElementById('prioritySummary').innerHTML=[['high','High priority'],['medium','Review'],['routine','Routine']].map(([key,label])=>`<div class="mini"><span>${label}</span><strong>${ev.filter(p=>p.priority===key).length}</strong></div>`).join('')+`<p class="muted">Priority scores use transparent prototype rules; they are not validated recommendations.</p>`;let q=document.getElementById('search').value.toLowerCase(),pf=document.getElementById('priority').value,tf=document.getElementById('trend').value;let list=ev.filter(p=>p.name.toLowerCase().includes(q)&&(pf==='all'||p.priority===pf)&&(tf==='all'||p.trend===tf));document.getElementById('count').textContent=list.length+' sources';document.getElementById('rows').innerHTML=list.map(p=>`<tr><td><span class="name">${esc(p.name)}</span><span class="sub">${esc(p.sourceType==='Consultant'?'Consultant · '+(p.hospital||'Hospital not specified'):p.area+' · GP practice')} · ${p.id}</span></td><td><b>${p.total}</b><span class="sub">${p.c.current} in last 30 days · ${p.c.previous} in previous 30 days</span></td><td><span class="pill ${p.trend==='down'?'high':p.trend==='up'?'routine':'medium'}">${p.c.delta>0?'+':''}${p.c.delta} referrals</span><span class="sub">${p.changePct===null?'No previous-period baseline':`${p.changePct>0?'+':''}${p.changePct}% vs previous 30 days`}</span></td><td>${p.gap} days ago<span class="sub">${p.late} overdue action(s)</span></td><td><span class="pill ${p.priority}">${p.priority==='high'?'High priority':p.priority==='medium'?'Review':'Routine'}</span><div class="reason">${esc(p.nextAction)}</div><div class="reason">${p.reasons.map(esc).join('<br>')}</div></td><td><button class="small" data-detail="${p.id}">Details</button></td></tr>`).join('');document.getElementById('noresults').hidden=!!list.length;let open=db.actions.filter(a=>!['Completed','Cancelled'].includes(a.status)).sort((a,b)=>a.due.localeCompare(b.due)).slice(0,5);document.getElementById('queue').innerHTML=open.length?open.map(a=>{let p=db.practices.find(p=>p.id===a.practiceId),late=a.due<iso(TODAY);return `<div class="item"><div class="itemtop"><strong>${esc(p?.name||'Unknown referral source')}</strong><span class="pill ${late?'high':'routine'}">${late?'Overdue':'Planned'}</span></div><p>${esc(a.type)} · Due ${esc(a.due)}<br>${esc(a.notes||'No notes')}</p><button data-complete="${a.id}">Mark completed</button></div>`}).join(''):'<div class="empty">No open actions. Plan a contact to get started.</div>';let recent=[...db.refs].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);document.getElementById('recent').innerHTML=recent.map(r=>{let p=db.practices.find(p=>p.id===r.practiceId);return `<div class="mini"><span>${esc(p?.name)}<span class="sub">${esc(r.type)} · ${esc(r.referrerName||'Fictional referrer')}</span></span><span>${esc(r.date)}</span></div>`}).join('');let opts=db.practices.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('');document.getElementById('refPractice').innerHTML=opts;document.getElementById('actPractice').innerHTML=opts;renderFeatureViews(ev)}
+
+function weekBounds(){const d=new Date(TODAY),day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);const end=new Date(d);end.setDate(end.getDate()+6);return {start:iso(d),end:iso(end)}}
+function renderFeatureViews(ev){
+ const {start,end}=weekBounds(),actions=db.actions.slice().sort((a,b)=>a.due.localeCompare(b.due));
+ const weekActions=actions.filter(a=>a.due>=start&&a.due<=end&&a.status!=='Cancelled');
+ document.getElementById('planCount').textContent=weekActions.filter(a=>a.status!=='Completed').length;
+ document.getElementById('planVisits').textContent=weekActions.filter(a=>a.type==='Visit').length;
+ document.getElementById('planLate').textContent=actions.filter(a=>a.status==='Planned'&&a.due<iso(TODAY)).length;
+ const rows=actions.filter(a=>a.status!=='Cancelled').map(a=>({a,p:db.practices.find(p=>p.id===a.practiceId)}));
+ document.getElementById('plannerList').innerHTML=rows.length?rows.map(({a,p})=>`<div class="item"><div class="itemtop"><strong>${esc(p?.name||'Unknown source')} · ${esc(a.type)}</strong><span class="pill ${a.status==='Completed'?'routine':a.due<iso(TODAY)&&a.status!=='Completed'?'high':'medium'}">${esc(a.status)}${a.status!=='Completed'&&a.due<iso(TODAY)?' · overdue':''}</span></div><p><b>Due:</b> ${esc(a.due)} · <b>Notes:</b> ${esc(a.notes||'No notes added')}</p><div class="actions"><button class="small" data-planner-complete="${a.id}" ${a.status==='Completed'?'disabled':''}>Mark completed</button><button class="small" data-planner-source="${a.practiceId}">View source</button></div></div>`).join(''):'<div class="empty">No actions planned yet. Use “Plan a visit” to schedule one.</div>';
+ const byVolume=ev.slice().sort((a,b)=>b.c.current-a.c.current);
+ const declining=ev.filter(p=>p.c.previous>0&&p.c.delta<0).sort((a,b)=>a.c.delta-b.c.delta);
+ const item=p=>`<div class="mini"><span><b>${esc(p.name)}</b><span class="sub">${p.c.current} now · ${p.c.previous} previous · ${p.c.delta>0?'+':''}${p.c.delta} (${p.changePct===null?'no baseline':`${p.changePct>0?'+':''}${p.changePct}%`})</span></span><button class="small" data-insight-source="${p.id}">Details</button></div>`;
+ document.getElementById('topSources').innerHTML=byVolume.slice(0,5).map(item).join('')||'<p class="muted">No referral data yet.</p>';
+ document.getElementById('decliningSources').innerHTML=declining.slice(0,5).map(item).join('')||'<p class="muted">No sources declining in this comparison window.</p>';
+ const months=Array.from({length:6},(_,i)=>{const d=new Date(TODAY.getFullYear(),TODAY.getMonth()-5+i,1),endD=new Date(TODAY.getFullYear(),TODAY.getMonth()-4+i,0);return {label:d.toLocaleDateString('en-IE',{month:'short',year:'2-digit'}),start:iso(d),end:iso(endD)}});
+ document.getElementById('sixMonthTrends').innerHTML=ev.map(p=>{const vals=months.map(m=>db.refs.filter(r=>r.practiceId===p.id&&r.date>=m.start&&r.date<=m.end).length),max=Math.max(1,...vals);return `<div class="trend-source"><div class="trend-title"><b>${esc(p.name)}</b><span class="muted">${vals.reduce((a,b)=>a+b,0)} referrals in chart window</span><button class="small" data-insight-source="${p.id}">Details</button></div><div class="trend-bars">${vals.map((v,i)=>`<div class="trend-month"><div class="trend-bar-wrap"><div class="trend-bar" title="${v} referrals" style="height:${Math.max(v?6:2,v/max*100)}%"></div></div><span>${months[i].label}</span><b>${v}</b></div>`).join('')}</div></div>`}).join('');
+ const weekRefs=db.refs.filter(r=>r.date>=start&&r.date<=end).length;
+ const declines=ev.filter(p=>p.c.previous>0&&p.c.delta<0).length;
+ const due=actions.filter(a=>a.due>=start&&a.due<=end&&a.status!=='Cancelled').length;
+ const late=actions.filter(a=>a.status==='Planned'&&a.due<iso(TODAY)).length;
+ document.getElementById('summaryPeriod').textContent=`Week ${start} to ${end} · fictional demo data`;
+ document.getElementById('sumReferrals').textContent=weekRefs;document.getElementById('sumDeclines').textContent=declines;document.getElementById('sumDue').textContent=due;document.getElementById('sumLate').textContent=late;
+ const focus=ev.filter(p=>p.priority!=='routine'||p.c.delta<0||p.late>0).slice(0,6);
+ document.getElementById('summaryFocus').innerHTML=focus.length?focus.map(p=>`<div class="mini"><span><b>${esc(p.name)}</b><span class="sub">${esc(p.nextAction)} · ${p.c.delta>0?'+':''}${p.c.delta} referrals vs previous 30 days</span></span><button class="small" data-insight-source="${p.id}">Details</button></div>`).join(''):'<p class="muted">No sources currently meet the focus rules. Continue routine monitoring.</p>';
+}
+function exportWeeklySummary(){
+ const {start,end}=weekBounds(),ev=all();
+ const lines=[['Weekly TerritoryPulse Summary',start,end],['Metric','Value'],['Referrals this week',db.refs.filter(r=>r.date>=start&&r.date<=end).length],['Sources with declining referrals',ev.filter(p=>p.c.previous>0&&p.c.delta<0).length],['Actions due this week',db.actions.filter(a=>a.due>=start&&a.due<=end&&a.status!=='Cancelled').length],['Overdue actions',db.actions.filter(a=>a.status==='Planned'&&a.due<iso(TODAY)).length],[],['Source','All-time referrals','Last 30 days','Previous 30 days','Change','Change %','Days since contact','Suggested next step']];
+ ev.forEach(p=>lines.push([p.name,p.total,p.c.current,p.c.previous,p.c.delta,p.changePct===null?'No baseline':p.changePct+'%',p.gap,p.nextAction]));
+ const csv=lines.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`territorypulse-weekly-summary-${start}.csv`;a.click();URL.revokeObjectURL(url);toast('Weekly summary CSV exported.');
+}
+
+function exportWeeklySummary(){
+ const {start,end}=weekBounds(),ev=all();
+ const lines=[['Weekly TerritoryPulse Summary',start,end],['Metric','Value'],['Referrals this week',db.refs.filter(r=>r.date>=start&&r.date<=end).length],['Sources with declining referrals',ev.filter(p=>p.c.previous>0&&p.c.delta<0).length],['Actions due this week',db.actions.filter(a=>a.due>=start&&a.due<=end&&a.status!=='Cancelled').length],['Overdue actions',db.actions.filter(a=>a.status==='Planned'&&a.due<iso(TODAY)).length],[],['Source','All-time referrals','Last 30 days','Previous 30 days','Change','Change %','Days since contact','Suggested next step']];
+ ev.forEach(p=>lines.push([p.name,p.total,p.c.current,p.c.previous,p.c.delta,p.changePct===null?'No baseline':p.changePct+'%',p.gap,p.nextAction]));
+ const csv=lines.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`territorypulse-weekly-summary-${start}.csv`;a.click();URL.revokeObjectURL(url);toast('Weekly summary CSV exported.');
+}
+function toast(s){let t=document.getElementById('toast');t.textContent=s;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2400)}function open(id){document.getElementById(id).showModal()}
+document.getElementById('addRef').onclick=()=>{document.getElementById('refDate').value=iso(TODAY);open('refDialog')};document.getElementById('addAct').onclick=()=>{document.getElementById('actDue').value=iso(TODAY);open('actDialog')};document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).close());
+document.getElementById('refForm').onsubmit=e=>{e.preventDefault();db.refs.push({id:'R'+String(db.nextRef++).padStart(4,'0'),practiceId:document.getElementById('refPractice').value,date:document.getElementById('refDate').value,type:document.getElementById('refType').value,referrerName:document.getElementById('referrerName').value.trim(),status:document.getElementById('refStatus').value});const persisted=save();render();e.target.closest('dialog').close();e.target.reset();toast(persisted?'Referral saved; totals recalculated.':'Referral added for this session, but browser storage is blocked. Open via a normal browser/GitHub Pages to test persistence.')};
+document.getElementById('actForm').onsubmit=e=>{e.preventDefault();let pid=document.getElementById('actPractice').value,status=document.getElementById('actStatus').value;db.actions.push({id:'A'+String(db.nextAction++).padStart(3,'0'),practiceId:pid,type:document.getElementById('actType').value,due:document.getElementById('actDue').value,status,notes:document.getElementById('actNotes').value});if(status==='Completed'){let p=db.practices.find(p=>p.id===pid);p.lastContact=iso(TODAY)}const persisted=save();render();e.target.closest('dialog').close();e.target.reset();toast(persisted?'Contact action saved.':'Action added for this session, but browser storage is blocked. Open via a normal browser/GitHub Pages to test persistence.')};
+
+const viewElements = {
+ overview: ['overview','dashboard-charts','kpis','notice'],
+ sources: ['source-list'],
+ followups: ['follow-ups'],
+ recent: ['recent-referrals']
+};
+function setView(view){
+  document.getElementById('source-detail-view').style.display='none';
+  ['planner-view','insights-view','summary-view'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('overview').style.display = view==='overview'?'flex':'none';
+  document.getElementById('notice').style.display = view==='overview'?'block':'none';
+  document.querySelector('.kpis').style.display = view==='overview'?'grid':'none';
+  document.getElementById('dashboard-charts').style.display = view==='overview'?'grid':'none';
+  document.getElementById('source-list').style.display = view==='sources'?'block':'none';
+  document.getElementById('follow-ups').style.display = view==='followups'?'block':'none';
+  document.getElementById('recent-referrals').style.display = ['sources','recent'].includes(view)?'block':'none';
+  document.getElementById('planner-view').style.display = view==='planner'?'block':'none';
+  document.getElementById('insights-view').style.display = view==='insights'?'block':'none';
+  document.getElementById('summary-view').style.display = view==='insights'?'block':'none';
+  document.querySelector('.layout').style.display = ['sources','followups','recent'].includes(view)?'block':'none';
+  document.querySelector('.layout').style.gridTemplateColumns='minmax(0,1fr)';
+  document.querySelector('.layout .side').style.display = ['sources','followups','recent'].includes(view)?'grid':'none';
+  document.querySelector('.layout .side').style.gridTemplateColumns='minmax(0,1fr)';
+  document.querySelector('.layout').style.gridTemplateColumns = view==='sources'?'minmax(0,1.65fr) minmax(260px,1fr)':'minmax(0,1fr)';
+  document.getElementById('follow-ups').style.display = view==='followups'?'block':'none';
+  document.getElementById('recent-referrals').style.display = ['sources','recent'].includes(view)?'block':'none';
+  document.querySelector('.footer').style.display='block';
+  document.querySelectorAll('.navlink').forEach(x=>{const active=x.dataset.view===view;x.classList.toggle('active',active);if(active)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current');if(active)x.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'});});
+  const headings={overview:'Overview',sources:'Referral sources',followups:'Follow-ups',recent:'Recent referrals'};
+  document.querySelector('main').scrollIntoView({behavior:'smooth',block:'start'});
+  if(view==='sources') document.getElementById('search').focus({preventScroll:true});
+}
+document.getElementById('plannerAddVisit').onclick=()=>{document.getElementById('actType').value='Visit';document.getElementById('actDue').value=iso(TODAY);open('actDialog')};
+document.getElementById('exportSummary').onclick=exportWeeklySummary;
+document.getElementById('plannerList').onclick=e=>{let done=e.target.closest('[data-planner-complete]'),src=e.target.closest('[data-planner-source]');if(done){let a=db.actions.find(a=>a.id===done.dataset.plannerComplete);if(a){a.status='Completed';let pr=db.practices.find(p=>p.id===a.practiceId);if(pr)pr.lastContact=iso(TODAY);save();render();toast('Action marked complete.')}}if(src)details(src.dataset.plannerSource)};
+['topSources','decliningSources','sixMonthTrends','summaryFocus'].forEach(id=>document.getElementById(id).onclick=e=>{let b=e.target.closest('[data-insight-source]');if(b)details(b.dataset.insightSource)});
+document.querySelectorAll('.navlink').forEach(link=>link.addEventListener('click',()=>setView(link.dataset.view)));
+['search','priority','trend'].forEach(id=>document.getElementById(id).addEventListener(id==='search'?'input':'change',render));
+document.getElementById('rows').onclick=e=>{let b=e.target.closest('[data-detail]');if(b)details(b.dataset.detail)};
+document.getElementById('queue').onclick=e=>{let b=e.target.closest('[data-complete]');if(!b)return;let a=db.actions.find(a=>a.id===b.dataset.complete);a.status='Completed';let p=db.practices.find(p=>p.id===a.practiceId);p.lastContact=iso(TODAY);const persisted=save();render();toast(persisted?'Action completed; contact date updated.':'Updated for this session, but browser storage is blocked.')};
+function details(pid){
+ let p=evaluate(db.practices.find(p=>p.id===pid));
+ let hist=db.refs.filter(r=>r.practiceId===pid).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,8);
+ let acts=db.actions.filter(a=>a.practiceId===pid).sort((a,b)=>b.due.localeCompare(a.due));
+ let timelineHtml=acts.length?acts.map(a=>`<div class="timeline-entry"><span class="timeline-dot"></span><div><b>${esc(a.type)} · ${esc(a.status)}</b><span class="sub">Due / recorded date: ${esc(a.due)}</span><p>${esc(a.notes||'No notes recorded for this action.')}</p></div></div>`).join(''):'<p class="muted">No contact history yet. Plan a call or visit and add notes.</p>';
+ let trendMonths=Array.from({length:6},(_,i)=>{let d=new Date(TODAY.getFullYear(),TODAY.getMonth()-5+i,1),start=iso(d),end=iso(new Date(TODAY.getFullYear(),TODAY.getMonth()-4+i,0));return {label:d.toLocaleDateString('en-IE',{month:'short'}),start,end,count:db.refs.filter(r=>r.practiceId===pid&&r.date>=start&&r.date<=end).length}});
+ let trendMax=Math.max(1,...trendMonths.map(m=>m.count));
+ let trendHtml=trendMonths.map(m=>`<div class="trend-month"><div class="trend-bar-wrap"><div class="trend-bar" style="height:${Math.max(m.count?6:2,m.count/trendMax*100)}%"></div></div><span>${m.label}</span><b>${m.count}</b></div>`).join('');
+ let panel=document.getElementById('source-detail-view');
+ ['planner-view','insights-view','summary-view'].forEach(id=>document.getElementById(id).style.display='none');
+ panel.style.display='block';
+ panel.innerHTML=`<div class="view-heading"><button class="back-button" id="backToSources" type="button">← Back to referral sources</button><div><h2>${esc(p.name)}</h2><div class="view-help">${esc(p.sourceType==='Consultant'?'Individual consultant · '+(p.hospital||'Hospital affiliation not specified'):'GP practice · '+p.area)} · Fictional demo record</div></div></div>
+ <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="card"><div class="label">Last 30 days</div><div class="num">${p.c.current}</div><div class="muted">Referral records</div></div><div class="card"><div class="label">Previous 30 days</div><div class="num">${p.c.previous}</div><div class="muted">Referral records</div></div><div class="card"><div class="label">Priority score</div><div class="num">${p.score}</div><div class="muted"><span class="pill ${p.priority}">${p.priority==='high'?'High priority':p.priority==='medium'?'Review':'Routine'}</span></div></div></div>
+ <div class="dashboard"><section class="card"><h3>Why this source is prioritised</h3><ul>${p.reasons.map(r=>`<li style="margin:8px 0">${esc(r)}</li>`).join('')}</ul><p class="muted">These are illustrative rules, not validated recommendations.</p><p><b>Last recorded contact:</b> ${p.gap} days ago</p><p><b>Overdue actions:</b> ${p.late}</p><button id="detailPlanContact" type="button">＋ Plan a contact</button></section>
+ <section class="card"><h3>Contact actions at a glance</h3>${acts.length?acts.map(a=>`<div class="mini"><span><b>${esc(a.type)}</b> · ${esc(a.status)}<span class="sub">${esc(a.notes||'No notes')}</span></span><span>${esc(a.due)}</span></div>`).join(''):'<p class="muted">No actions recorded for this source.</p>'}</section></div>
+ <section class="card"><h3>Six-month referral trend</h3><p class="muted">Monthly referral counts for this source. Empty months are shown as zero.</p><div class="trend-bars">${trendHtml}</div></section>
+ <section class="card"><h3>Contact history and notes</h3><p class="muted">Calls, visits, outcomes and next steps recorded for this source.</p>${timelineHtml}</section>
+ <section class="card"><h3>Recent referral records</h3>${hist.length?`<div class="tablewrap"><table style="min-width:0"><tr><th>Date</th><th>Referrer type</th><th>Status</th></tr>${hist.map(r=>`<tr><td>${esc(r.date)}</td><td>${esc(r.type)}</td><td>${esc(r.status)}</td></tr>`).join('')}</table></div>`:'<p class="muted">No referrals recorded for this source.</p>'}</section>`;
+ document.getElementById('overview').style.display='none';
+ document.getElementById('notice').style.display='none';
+ document.querySelector('.kpis').style.display='none';
+ document.getElementById('dashboard-charts').style.display='none';
+ document.querySelector('.layout').style.display='none';
+ document.querySelector('.footer').style.display='block';
+ document.querySelectorAll('.navlink').forEach(x=>{const active=x.dataset.view==='sources';x.classList.toggle('active',active);if(active)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current');if(active)x.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'});});
+ document.getElementById('backToSources').onclick=()=>setView('sources');
+ document.getElementById('detailPlanContact').onclick=()=>{setView('overview');document.getElementById('actPractice').value=pid;document.getElementById('actDue').value=iso(TODAY);open('actDialog')};
+ panel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('export').onclick=()=>{let rows=[['Source ID','Source name','Source type','Hospital affiliation','Referral date','Referrer type','Named referrer','Record status'],...db.refs.map(r=>[r.practiceId,db.practices.find(p=>p.id===r.practiceId)?.name||'',db.practices.find(p=>p.id===r.practiceId)?.sourceType||'',db.practices.find(p=>p.id===r.practiceId)?.hospital||'',r.date,r.type,r.referrerName||'',r.status])];let csv=rows.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');let url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'})),a=document.createElement('a');a.href=url;a.download='territorypulse-fictional-referrals.csv';a.click();URL.revokeObjectURL(url);toast('Fictional referral CSV exported.')};render();setView('overview');
+if(!storageAvailable) toast('Browser storage is blocked in this preview. Changes may not survive refresh; try the downloaded file in a normal browser or GitHub Pages.');
+</script></body></html>
